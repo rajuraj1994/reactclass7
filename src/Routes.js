@@ -5,6 +5,7 @@ import DataFetch from './hooks/DataFetch'
 import Increment from './hooks/Increment'
 import Main from './hooks/Main'
 import Test from './hooks/Test'
+import Confirm from './pages/auth/Confirm'
 import Signin from './pages/auth/Signin'
 import Signup from './pages/auth/Signup'
 import Deals from './pages/Deals'
@@ -22,6 +23,7 @@ const Routes = () => {
                 <Route exact path="/deals" component={Deals}/>
                 <Route exact path="/signup" component={Signup}/>
                 <Route exact path="/signin" component={Signin}/>
+                <Route exact path="/email/confirmation/:token" component={Confirm}/>
 
              {/* hooks */}
              <Route exact  path="/hooks/increment" component={Increment}/>
