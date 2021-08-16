@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { API } from '../../config'
+import Nav from '../../components/Nav'
 
 const Confirm = ({match}) => {
     const [values,setValues]=useState({
@@ -46,6 +47,7 @@ const showSuccess=()=>(
 
     return (
         <>
+        <Nav/>
         {showError()}
         {showSuccess()}
 

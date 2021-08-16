@@ -7,6 +7,8 @@ import Main from './hooks/Main'
 import Test from './hooks/Test'
 import AdminDashboard from './pages/auth/AdminDashboard'
 import AdminRoute from './pages/auth/AdminRoute'
+import UserDashboard from './pages/auth/UserDashboard'
+import PrivateRoute from './pages/auth/PrivateRoute'
 import Confirm from './pages/auth/Confirm'
 import Signin from './pages/auth/Signin'
 import Signup from './pages/auth/Signup'
@@ -29,6 +31,13 @@ const Routes = () => {
 
             {/* admin */}
             <AdminRoute exact path="/admin/dashboard" component={AdminDashboard}/>
+
+
+
+
+            <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
+
+
 
              {/* hooks */}
              <Route exact  path="/hooks/increment" component={Increment}/>

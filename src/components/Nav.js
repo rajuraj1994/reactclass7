@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
+import {isAuthenticated,signout} from '../pages/auth'
 import './nav.css'
-const Nav = () => {
+const Nav = ({history}) => {
   return (
     <>
       <div className="container-fluid top-nav ">
@@ -27,6 +28,11 @@ const Nav = () => {
             <ul className="d-flex justify-content-end">
               <li className="list-unstyled"><Link to="/signin" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user'></i></Link></li>
               <li className="list-unstyled"><Link to="/signup" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user-plus'></i></Link></li>
+              {isAuthenticated() && (
+                <button className="btn btn-warning" onClick={()=>signout(()=>{
+                  history.push('/')
+                })}>Signout</button>
+              )}
               <li className="list-unstyled"><Link to="#" className="text-decoration-none px-2 custom-link"><i className='bx bxs-cart-add'></i></Link></li>
             </ul>
           </div>
@@ -68,4 +74,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default withRouter(Nav)
