@@ -1,8 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
+import {isAuthenticated,signout} from './index'
 
 
-const AdminDashboard=()=>{
+const AdminDashboard=({history})=>{
+  const{user:{name,email}}=isAuthenticated()
     return(
         <>
         <div className="container-fluid">
@@ -47,14 +49,18 @@ const AdminDashboard=()=>{
     <div className="dropdown">
       <Link to="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
-        <strong>mdo</strong>
+        <strong>{name}</strong>
       </Link>
       <ul className="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><Link className="dropdown-item" to="#">New project...</Link></li>
+        <li><Link className="dropdown-item" to="#">{email}</Link></li>
         <li><Link className="dropdown-item" to="#">Settings</Link></li>
         <li><Link className="dropdown-item" to="#">Profile</Link></li>
         <li><hr className="dropdown-divider"/></li>
-        <li><Link className="dropdown-item" to="#">Sign out</Link></li>
+        <li>  {isAuthenticated() && (
+                <button className="btn btn-warning" onClick={()=>signout(()=>{
+                  history.push('/')
+                })}>Signout</button>
+              )}</li>
       </ul>
     </div>
   </div>
@@ -66,4 +72,4 @@ const AdminDashboard=()=>{
 
 }
 
-export default  AdminDashboard
+export default  withRouter(AdminDashboard)

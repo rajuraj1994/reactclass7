@@ -15,6 +15,7 @@ import Signup from './pages/auth/Signup'
 import Deals from './pages/Deals'
 import Home from './pages/Home'
 import FormValidation from './validation/FormValidation'
+import ForgetPassword from './pages/auth/ForgetPassword'
 
 
 
@@ -28,6 +29,7 @@ const Routes = () => {
                 <Route exact path="/signup" component={Signup}/>
                 <Route exact path="/signin" component={Signin}/>
                 <Route exact path="/email/confirmation/:token" component={Confirm}/>
+                <Route exact path="/forgetpassword" component={ForgetPassword}/>
 
             {/* admin */}
             <AdminRoute exact path="/admin/dashboard" component={AdminDashboard}/>

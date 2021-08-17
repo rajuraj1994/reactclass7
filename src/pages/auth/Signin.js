@@ -79,6 +79,15 @@ const redirectUser=()=>{
                         <button className="btn btn-primary" onClick={clickSubmit}>Signin</button>
                         </div>
                         <div className="mb-3">
+                            Forget Password ? &nbsp; &nbsp; &nbsp;
+                            <Link to="/forgetpassword">
+                                <button className="btn btn-warning">
+                                Forget Password
+                                </button>
+                                </Link>
+                               
+                        </div>
+                        <div className="mb-3">
                             Dont have a Account Yet ?  &nbsp;&nbsp;
                             <Link to="/signup">
                                 <button className="btn btn-info">Signup</button>
