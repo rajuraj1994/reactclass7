@@ -1,85 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Card = () => {
+const Card = ({product}) => {
     return (
         <>
-        <div className="container-fluid mt-2">
-        <div className="row row-cols-1 row-cols-md-4 g-4">
+  <Link to={`/productdetails/${product._id}`} className="text-decoration-none text-dark">    
   <div className="col">
     <div className="card shadow">
-      <img src="./images/b.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
+      <img src={`http://localhost:8000/${product.product_image}`} className="card-img-top" alt={product.product_name} style={{height:'200px'}}/>
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+       <center><h5 className="card-title">{product.product_name}</h5></center> 
+       <center><h5>Rs.{product.product_price}</h5></center>
+       <center><button className="btn btn-success">Add To Cart </button></center>
       </div>
     </div>
   </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/d.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-      </div>
-    </div>
-  </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/cp3.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/d.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/cp4.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/b.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
-
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/cp4.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
-  <div className="col">
-    <div className="card shadow">
-      <img src="./images/cp3.jpg" className="card-img-top" alt="..." style={{height:'200px'}}/>
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-       
-      </div>
-    </div>
-  </div>
+  </Link> 
   
-  
-</div>
- </div>
             
         </>
     )

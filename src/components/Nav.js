@@ -9,7 +9,7 @@ const Nav = ({history}) => {
         <div className="row align-items-center">
           <div className="col-md-3 d-flex">
             <Link className="navbar-brand" to="/">
-            <img src="./images/logo.png" alt="" className="img-fluid" style={{width:"100px"}}/> 
+            <img src="/images/logo.png" alt="" className="img-fluid" style={{width:"100px"}}/> 
             </Link>
             <div className="d-flex align-items-center">
               <div><i className='bx bxs-location-plus text-white custom-link'></i></div>
@@ -25,15 +25,27 @@ const Nav = ({history}) => {
             </form>
           </div>
           <div className="col-md-2">
-            <ul className="d-flex justify-content-end">
-              <li className="list-unstyled"><Link to="/signin" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user'></i></Link></li>
-              <li className="list-unstyled"><Link to="/signup" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user-plus'></i></Link></li>
+            <ul className="d-flex justify-content-end align-items-center">
+              {isAuthenticated()&& isAuthenticated().user.role===1 && (
+                 <li className="list-unstyled mt-2"><Link to="/admin/dashboard" className="text-decoration-none  px-2 text-white">Dashboard</Link></li>
+              )}
+               {isAuthenticated()&& isAuthenticated().user.role===0 && (
+                 <li className="list-unstyled mt-2"><Link to="/user/dashboard" className="text-decoration-none  px-2 text-white">Profile</Link></li>
+              )}
+              {!isAuthenticated() && (
+                <>
+                 <li className="list-unstyled mt-2"><Link to="/signin" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user'></i></Link></li>
+              <li className="list-unstyled mt-2"><Link to="/signup" className="text-decoration-none px-2 custom-link"><i className='bx bxs-user-plus'></i></Link></li>
+
+                </>
+              )}
+             
               {isAuthenticated() && (
-                <button className="btn btn-warning" onClick={()=>signout(()=>{
+                <button className="btn btn-outline-warning mt-2" onClick={()=>signout(()=>{
                   history.push('/')
                 })}>Signout</button>
               )}
-              <li className="list-unstyled"><Link to="#" className="text-decoration-none px-2 custom-link"><i className='bx bxs-cart-add'></i></Link></li>
+              <li className="list-unstyled mt-2"><Link to="#" className="text-decoration-none px-2 custom-link"><i className='bx bxs-cart-add'></i></Link></li>
             </ul>
           </div>
         </div>

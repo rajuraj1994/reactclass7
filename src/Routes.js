@@ -16,6 +16,11 @@ import Deals from './pages/Deals'
 import Home from './pages/Home'
 import FormValidation from './validation/FormValidation'
 import ForgetPassword from './pages/auth/ForgetPassword'
+import ResetPassword from './pages/auth/ResetPassword'
+import AddCategory from './admin/AddCategory'
+import AddProduct from './admin/AddProduct'
+import AllProducts from './admin/AllProducts'
+import ProductDetail from './pages/ProductDetail'
 
 
 
@@ -30,9 +35,14 @@ const Routes = () => {
                 <Route exact path="/signin" component={Signin}/>
                 <Route exact path="/email/confirmation/:token" component={Confirm}/>
                 <Route exact path="/forgetpassword" component={ForgetPassword}/>
+                <Route exact path="/reset/password/:token" component={ResetPassword}/>
+                <Route exact path="/productdetails/:productId" component={ProductDetail}/>
 
             {/* admin */}
             <AdminRoute exact path="/admin/dashboard" component={AdminDashboard}/>
+            <AdminRoute exact path="/admin/addcategory" component={AddCategory}/>
+            <AdminRoute exact path="/admin/addproduct" component={AddProduct}/>
+            <AdminRoute exact path="/admin/allproduct" component={AllProducts}/>
 
 
 
