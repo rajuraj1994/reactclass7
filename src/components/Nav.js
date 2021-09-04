@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link,withRouter } from 'react-router-dom'
 import {isAuthenticated,signout} from '../pages/auth'
+import { useSelector } from 'react-redux'
 import './nav.css'
 const Nav = ({history}) => {
+  const  {cartItems}  = useSelector(state => state.cart)
   return (
     <>
       <div className="container-fluid top-nav ">
@@ -45,7 +47,16 @@ const Nav = ({history}) => {
                   history.push('/')
                 })}>Signout</button>
               )}
-              <li className="list-unstyled mt-2"><Link to="#" className="text-decoration-none px-2 custom-link"><i className='bx bxs-cart-add'></i></Link></li>
+              <li className="list-unstyled mt-2"><Link to="/cart" className="text-decoration-none px-2 custom-link"><i className='bx bxs-cart-add position-relative'>
+              <span className="position-absolute top-0 start-100 bg-warning badge rounded-pill  translate-middle text-dark" style={{fontSize:'12px'}}>
+    <span>{cartItems.length}</span>
+  </span>
+
+              </i>
+              
+              </Link>
+              
+              </li>
             </ul>
           </div>
         </div>

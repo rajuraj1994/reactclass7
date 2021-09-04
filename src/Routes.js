@@ -21,6 +21,7 @@ import AddCategory from './admin/AddCategory'
 import AddProduct from './admin/AddProduct'
 import AllProducts from './admin/AllProducts'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
 
 
 
@@ -37,6 +38,7 @@ const Routes = () => {
                 <Route exact path="/forgetpassword" component={ForgetPassword}/>
                 <Route exact path="/reset/password/:token" component={ResetPassword}/>
                 <Route exact path="/productdetails/:productId" component={ProductDetail}/>
+                <Route exact path="/cart" component={Cart}/>
 
             {/* admin */}
             <AdminRoute exact path="/admin/dashboard" component={AdminDashboard}/>
