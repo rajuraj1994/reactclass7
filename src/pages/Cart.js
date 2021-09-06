@@ -7,7 +7,7 @@ import { addItemToCart, removeItemFromCart } from '../actions/cartActions'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-const Cart = () => {
+const Cart = ({history}) => {
     const dispatch = useDispatch()
     const { cartItems } = useSelector(state => state.cart)
 
@@ -29,6 +29,11 @@ const Cart = () => {
     const removeCartHandler=(id,name)=>{
         dispatch(removeItemFromCart(id))
         toast.success(`${name} is remove from the cart`)
+    }
+
+    const shippingHandler=()=>{
+        history.push('/signin?redirect=shipping')
+
     }
 
     return (
@@ -88,7 +93,9 @@ const Cart = () => {
                                         <p>Subtotal : <span>{cartItems.reduce((ac,item)=>(ac+Number(item.quantity)),0)} (Units)</span></p>
                                         <p>Totalprice : Rs.<span>{cartItems.reduce((ac,item)=>(ac+item.quantity*item.price),0)} </span></p>
                                         <hr/>
-                                        <button className="btn btn-warning">Check Out</button>
+                                        <button className="btn btn-warning"
+                                        onClick={shippingHandler}
+                                        >Check Out</button>
 
                                     </div>
 

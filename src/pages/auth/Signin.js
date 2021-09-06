@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
-import {Link,Redirect} from 'react-router-dom'
+import {Link,Redirect,withRouter} from 'react-router-dom'
 
 import { signin,authenticate,isAuthenticated } from './index'
 import { values } from 'lodash'
-const Signin = () => {
+const Signin = ({history,location}) => {
     const[values,setValues]=useState({
         email:'',
         password:'',
@@ -46,15 +46,14 @@ const Signin = () => {
 
 //to redirect user by role
 const redirectUser=()=>{
+    const redirect=location.search ? location.search.split('=')[1]:'/user/dashboard'
     if(redirectToReferrer){
         if(user && user.role===1){
             return <Redirect to="/admin/dashboard"/>
-        }else{
-            return <Redirect to="/user/dashboard"/>
         }
     }
-    if(isAuthenticated()){
-        return <Redirect to="/" />
+    if(isAuthenticated() && user.role===0){
+        return history.push(redirect)
     }
 }
 
@@ -106,4 +105,4 @@ const redirectUser=()=>{
     )
 }
 
-export default Signin
+export default withRouter(Signin)

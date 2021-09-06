@@ -22,6 +22,7 @@ import AddProduct from './admin/AddProduct'
 import AllProducts from './admin/AllProducts'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
+import Shipping from './pages/Shipping'
 
 
 
@@ -50,6 +51,7 @@ const Routes = () => {
 
 
             <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
+            <PrivateRoute exact path="/shipping" component={Shipping}/>
 
 
 
