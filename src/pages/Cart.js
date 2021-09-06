@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-import { Link } from 'react-router-dom'
+import { Link ,withRouter} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, removeItemFromCart } from '../actions/cartActions'
 import { ToastContainer, toast } from 'react-toastify'
@@ -33,7 +33,6 @@ const Cart = ({history}) => {
 
     const shippingHandler=()=>{
         history.push('/signin?redirect=shipping')
-
     }
 
     return (
@@ -111,4 +110,4 @@ const Cart = ({history}) => {
     )
 }
 
-export default Cart
+export default withRouter(Cart)

@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import {Link,Redirect,withRouter} from 'react-router-dom'
 
 import { signin,authenticate,isAuthenticated } from './index'
-import { values } from 'lodash'
+
 const Signin = ({history,location}) => {
     const[values,setValues]=useState({
         email:'',
@@ -53,7 +53,7 @@ const redirectUser=()=>{
         }
     }
     if(isAuthenticated() && user.role===0){
-        return history.push(redirect)
+        return  history.push(redirect)
     }
 }
 
