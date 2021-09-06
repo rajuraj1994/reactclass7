@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
+import { productDetails,listRelated} from '../components/uiApi'
 import { useDispatch } from 'react-redux'
 import { addItemToCart } from '../actions/cartActions'
-import { productDetails,listRelated} from '../components/uiApi'
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer,toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
 const ProductDetail = (props) => {
     const [product, setProduct] = useState({})
     const [error, setError] = useState(false)
@@ -42,12 +40,14 @@ const ProductDetail = (props) => {
 
     const addToCart=()=>{
         dispatch(addItemToCart(props.match.params.productId,quantity))
-        toast(`${product.product_name} Added to Cart`)
+        toast.success(`${product.product_name} is added to cart`)
     }
     return (
         <>
+        
             <Nav />
-            <ToastContainer position="top-center"/>
+            <ToastContainer position="top-center" theme="colored"/>
+           
             <div className="card shadow-lg mb-3 mt-4 offset-md-3" style={{ maxWidth: '800px' }}>
                 <div className="row g-0">
                     <div className="col-md-6 mt-3 mb-3 p-3">
