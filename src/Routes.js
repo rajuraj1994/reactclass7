@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
 import Show from './context/Show'
 import DataFetch from './hooks/DataFetch'
@@ -23,10 +23,24 @@ import AllProducts from './admin/AllProducts'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Shipping from './pages/Shipping'
+import ConfirmOrder from './pages/ConfirmOrder'
 
+import {API} from './config'
+import axios from 'axios'
 
 
 const Routes = () => {
+
+    const[stripeApiKey,setStripeApiKey]=useState('')
+
+  useEffect(()=>{
+    async function getStripeApiKey(){
+      const {data}=await axios.get(`${API}/api/stripeapi`)
+      setStripeApiKey(data.stripeApiKey)
+    }
+
+    getStripeApiKey()
+  })
     return (
         <>
         <Router>
@@ -52,6 +66,7 @@ const Routes = () => {
 
             <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
             <PrivateRoute exact path="/shipping" component={Shipping}/>
+            <PrivateRoute exact path="/confirm" component={ConfirmOrder}/>
 
 
 
