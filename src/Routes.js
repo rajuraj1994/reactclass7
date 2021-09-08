@@ -24,23 +24,27 @@ import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Shipping from './pages/Shipping'
 import ConfirmOrder from './pages/ConfirmOrder'
+import Payment from './pages/Payment'
 
 import {API} from './config'
 import axios from 'axios'
 
+//payment
+import{Elements} from '@stripe/react-stripe-js'
+import{loadStripe} from '@stripe/stripe-js'
 
 const Routes = () => {
-
     const[stripeApiKey,setStripeApiKey]=useState('')
+      
+    useEffect(()=>{
+        async function getStripeApiKey(){
+            const {data}= await axios.get(`${API}/stripeapi`)
+            setStripeApiKey(data.stripeApiKey)
+        }
 
-  useEffect(()=>{
-    async function getStripeApiKey(){
-      const {data}=await axios.get(`${API}/api/stripeapi`)
-      setStripeApiKey(data.stripeApiKey)
-    }
+        getStripeApiKey()
+    })
 
-    getStripeApiKey()
-  })
     return (
         <>
         <Router>
@@ -67,6 +71,11 @@ const Routes = () => {
             <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
             <PrivateRoute exact path="/shipping" component={Shipping}/>
             <PrivateRoute exact path="/confirm" component={ConfirmOrder}/>
+            {stripeApiKey && 
+            <Elements stripe={loadStripe(stripeApiKey)}>
+            <PrivateRoute exact path="/payment" component={Payment}/>
+            </Elements>
+            }
 
 
 
