@@ -32,6 +32,7 @@ import axios from 'axios'
 //payment
 import{Elements} from '@stripe/react-stripe-js'
 import{loadStripe} from '@stripe/stripe-js'
+import OrderSuccess from './pages/OrderSuccess'
 
 const Routes = () => {
     const[stripeApiKey,setStripeApiKey]=useState('')
@@ -71,11 +72,13 @@ const Routes = () => {
             <PrivateRoute exact path="/user/dashboard" component={UserDashboard}/>
             <PrivateRoute exact path="/shipping" component={Shipping}/>
             <PrivateRoute exact path="/confirm" component={ConfirmOrder}/>
+            <PrivateRoute exact path="/success" component={OrderSuccess}/>
             {stripeApiKey && 
             <Elements stripe={loadStripe(stripeApiKey)}>
             <PrivateRoute exact path="/payment" component={Payment}/>
             </Elements>
             }
+           
 
 
 

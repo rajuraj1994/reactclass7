@@ -4,6 +4,7 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import {clearErrors, createOrder,Errors} from '../actions/orderActions'
 import { saveShippingInfo } from '../actions/cartActions'
 import CheckoutStep from '../components/CheckoutStep'
 import axios from 'axios'
@@ -29,10 +30,30 @@ const Payment = ({history}) => {
     const dispatch=useDispatch()
     const{user,token}=isAuthenticated()
     const{cartItems,shippingInfo}=useSelector(state=>state.cart)
+    const{error}=useSelector(state=>state.newOrder)
+
 
     useEffect(()=>{
+          if(error){
+              toast.error(error)
+              dispatch(clearErrors)
+          }
+    },[dispatch,toast,error])
 
-    },[])
+    const order={
+        orderItems:cartItems,
+        shippingAddress1:shippingInfo.shippingAddress1,
+        shippingAddress2:shippingInfo.shippingAddress2,
+        city:shippingInfo.city,
+        zip:shippingInfo.zip,
+        country:shippingInfo.country,
+        phone:shippingInfo.phone,
+        user:user._id
+
+    }
+
+ 
+
     const orderInfo=JSON.parse(sessionStorage.getItem('orderInfo'))
 
     const paymentData={
@@ -76,6 +97,12 @@ const Payment = ({history}) => {
           else{
               //payment is processsed or not
               if(result.paymentIntent.status==='succeeded'){
+                 order.paymentInfo={
+                     id:result.paymentIntent.id,
+                     status:result.paymentIntent.status
+                 }
+                 dispatch(createOrder(order))
+
                   history.push('/success')
               }
               else{
