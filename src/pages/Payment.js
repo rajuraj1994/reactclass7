@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {clearErrors, createOrder,Errors} from '../actions/orderActions'
-import { saveShippingInfo } from '../actions/cartActions'
+
 import CheckoutStep from '../components/CheckoutStep'
 import axios from 'axios'
 import { isAuthenticated } from './auth'
@@ -102,6 +102,7 @@ const Payment = ({history}) => {
                      status:result.paymentIntent.status
                  }
                  dispatch(createOrder(order))
+                 localStorage.removeItem('cartItems')
 
                   history.push('/success')
               }
